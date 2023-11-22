@@ -39,23 +39,40 @@
       <section class="info-weather" data-day-selected="">
         <div class="detailed-info"></div>
         <h2>
-          <span class="info-location city">London</span> (<span id="info-date"></span>)
+          <span class="info-location city">London</span> (<span class="date"></span>)
         </h2>
-        <div class="info-container">
-          <p>Avg temperture: <span id="avg-temp"></span></p>
-          <p>Peak temperture: <span id="peak-temp"></span></p>
-          <p>Humidity: <span id="humidity"></span></p>
+        <div class="info-container selected-info">
+          <p>Avg temperture: <span id="seleceted-avg-temp"></span></p>
+          <p>Peak temperture: <span id="selected-peak-temp"></span></p>
+          <p>Humidity: <span id="selected-humidity"></span></p>
         </div>
         </div>
         
 
         <section class="forecast">
-          <div class="row"></div>
+          <div class="row">
+           <h3> Forecast for <span class="city">London</span>: </h3>
+          </div>
+          <div class="container">
+            <li class = "forecastCards row">
+              <ul class="forecastCard col">
+                <i class ="weatherIcon">
+                <div class="info-container forecast-info">
+                  <p></p>
+                  <p>Avg temperture:</p>
+                  <p>Peak temperture: </p>
+                  <p>Humidity:</p>
+                </div>
+                </i>
+              </ul>
+            </li>
+          </div>
         </section>
       </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/interaction.js"></script>
   </body>

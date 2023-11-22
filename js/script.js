@@ -11,7 +11,7 @@ function updateCity(cityName){
 function constructArrayFromDataMain(data,dataItem){
     var array = [];
     data.forEach(function(item){
-        array.push(item.main[dataItem])
+        array.push(item[dataItem])
     })
     return array;
 }
@@ -36,13 +36,26 @@ function findPeak(array){
     return largest;
 }
 
+function splitForecastIntoDays(list){
+    var daysArray = [];
+    list.forEach(function(item){
+        if(dayjs().format("ddd") != dayjs(item.dt).format("ddd")){
+
+        }
+    })
+}
+
 
 
 function weatherOneCallApiCall(weatherQueryUrl){
     fetch(weatherQueryUrl).then(function(response){
         return response.json();
     }).then(function(data){
-        return data;
+        humidityArray = constructArrayFromDataMain(data.hourly, "humidity");
+        tempArray = constructArrayFromDataMain(data.hourly, "temp")
+        $("#selected-humidity").text(findAverage(humidityArray).toFixed(2));
+        $("#seleceted-avg-temp").text((findAverage(tempArray)-273.15).toFixed(2) );
+        $("#selected-peak-temp").text((~~findPeak(tempArray) - 273.15).toFixed(2));
     })
 }
 
@@ -50,12 +63,11 @@ function weatherForecastApiCall(weatherQueryUrl){
     fetch(weatherQueryUrl).then(function(response){
         return response.json();
     }).then(function(data){
-    
-        humidityArray = constructArrayFromDataMain(data.list, "humidity");
-        tempArray = constructArrayFromDataMain(data.list, "temp")
-        $("#humidity").text(findAverage(humidityArray));
-        $("#avg-temp").text((findAverage(tempArray)-273.15).toFixed(2) );
-        $("#peak-temp").text((~~findPeak(tempArray) - 273.15).toFixed(2));
+        console.log(data);
+        console.log(dayjs(data.list[0].dt).format("ddd"));
+        var ulEl = $("<ul class=\"forecastCard col\"></ul>");
+        var infoContainerEl = $("<div class=\"info container forecast-info\"></div>");
+        var foreCastDate = $("<p>");
     })
 }
 
