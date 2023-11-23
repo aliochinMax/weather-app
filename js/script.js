@@ -21,10 +21,11 @@ function findAverage(array){
     array.forEach(function(item){
         total += item;
     })
-    return total/array.length;
+    return ~~(total/array.length).toFixed(2);
 }
 
 function findPeak(array){
+    console.log(array);
     var largest = -9999999;
     array.forEach(function(item){
       
@@ -33,16 +34,36 @@ function findPeak(array){
         }
     })
    
-    return largest;
+    return ~~largest;
 }
 
-function splitForecastIntoDays(list){
-    var daysArray = [];
+function handleForecastData(list){
+    var currentWorkingDay = dayjs().add(1,"day").format("ddd");
+    
+    var tempArray = [];
+    var humidityArray = [];
     list.forEach(function(item){
-        if(dayjs().format("ddd") != dayjs(item.dt).format("ddd")){
-
+        var daySelected = dayjs(item.dt_txt).format("ddd");
+        console.log(currentWorkingDay);
+        if(daySelected != dayjs().format("ddd")){
+        if(daySelected != currentWorkingDay){
+                var ulEl = $("<ul class=\"forecastCard col\"></ul>");
+                var infoContainerEl = $("<div class=\"info container forecast-info\"></div>");
+                var foreCastDateEl = $("<p>").text(currentWorkingDay);
+                var avgTempEl = $("<p>").text("Avg temperture: " + findAverage(tempArray));
+                var peakTempEl =  $("<p>").text("Peak temperture: " + findPeak(tempArray));
+                var avgHumidityEl = $("<p>").text("Humidity: " + findAverage(humidityArray));
+                $(".forecastCards").append(ulEl.append(infoContainerEl.append(foreCastDateEl, avgTempEl, peakTempEl, avgHumidityEl)));
+                currentWorkingDay = daySelected;
+                tempArray = [];
+                humidityArray = [];
+            }
+                tempArray.push(item.main.temp);
+                humidityArray.push(item.main.humidity);
         }
     })
+
+
 }
 
 
@@ -63,11 +84,9 @@ function weatherForecastApiCall(weatherQueryUrl){
     fetch(weatherQueryUrl).then(function(response){
         return response.json();
     }).then(function(data){
-        console.log(data);
-        console.log(dayjs(data.list[0].dt).format("ddd"));
-        var ulEl = $("<ul class=\"forecastCard col\"></ul>");
-        var infoContainerEl = $("<div class=\"info container forecast-info\"></div>");
-        var foreCastDate = $("<p>");
+        console.log(data.list);
+        handleForecastData(data.list);
+      
     })
 }
 
