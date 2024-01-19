@@ -1,6 +1,13 @@
+:root{
+    --bg-color: #40128B;
+    --text-color: #f5f5f5;
+}
+
 body, html{
+    background-color: var(--bg-color);
     margin: 0;
     padding: 0;
+    color: var(--text-color);
 }
 
 li{
@@ -8,7 +15,6 @@ li{
 }
 
 main{
-    background-color: beige;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: auto;
@@ -18,7 +24,24 @@ main{
 aside{
     grid-area: search-aside;
 }
+.city-list{
+    display: flex;
+    flex-direction: column;
+}
 
 .info-weather{
     grid-area: weather-info;
+}
+
+.detailed-info{
+    border-radius: 5px;
+    border: 1px solid var(--text-color);
+    padding: 5px;
+}
+
+.forecastCard{
+    border-radius: 5px;
+    border: 1px solid var(--text-color);
+    padding: 5px;
+    font-size: 2em;
 }

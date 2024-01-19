@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
-    <header>The weather for <span id="header-location" class="city">London</span></header>
+    <header>
+      The weather for <span id="header-location" class="city">London</span>
+    </header>
     <main>
       <aside>
         <form class="search-container">
@@ -25,7 +27,7 @@
           <input
             class="form-control form-control-lg search-input"
             type="text"
-            placeholder="london"
+            placeholder="London"
             aria-label=".form-control-lg example"
           />
           <input type="hidden" id="search-id" />
@@ -37,26 +39,26 @@
 
       <!--Note data attr day-selected should be formatted d/m/yyyy-->
       <section class="info-weather" data-day-selected="">
-        <div class="detailed-info"></div>
-        <h2>
-          <span class="info-location city">London</span> (<span class="date"></span>)
-        </h2>
-        <div class="info-container selected-info">
-          <p>Avg temperture: <span id="seleceted-avg-temp"></span></p>
-          <p>Peak temperture: <span id="selected-peak-temp"></span></p>
-          <p>Humidity: <span id="selected-humidity"></span></p>
+        <div class="detailed-info">
+          <h2>
+            <span class="info-location city">London</span> (<span
+              class="date"
+            ></span
+            >)
+          </h2>
+          <div class="info-container selected-info">
+            <p>Avg temperture: <span id="seleceted-avg-temp"></span></p>
+            <p>Peak temperture: <span id="selected-peak-temp"></span></p>
+            <p>Humidity: <span id="selected-humidity"></span></p>
+          </div>
         </div>
-        </div>
-        
 
         <section class="forecast">
           <div class="row">
-           <h3> Forecast for <span class="city">London</span>: </h3>
+            <h3>Forecast for <span class="city">London</span>:</h3>
           </div>
           <div class="container">
-            <li class = "forecastCards row">
-             
-            </li>
+            <li class="forecastCards row"></li>
           </div>
         </section>
       </section>
